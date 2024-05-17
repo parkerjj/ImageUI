@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "ImageUI",
     platforms: [
-        .iOS(.v11)
+        .iOS("15.0")
     ],
     products: [
         .library(name: "ImageUI", targets: ["ImageUI"])
@@ -14,6 +14,6 @@ let package = Package(
         .package(url: "https://github.com/kean/Nuke.git", "12.6.0"..<"13.0.0")
     ],
     targets: [
-        .target(name: "ImageUI", dependencies: ["Nuke"])
+        .target(name: "ImageUI", dependencies: ["Nuke","NukeExtensions"])
     ]
 )

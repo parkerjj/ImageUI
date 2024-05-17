@@ -23,6 +23,7 @@
 //
 
 import Nuke
+import NukeExtensions
 import Photos
 
 #if canImport(LinkPresentation)
@@ -72,7 +73,7 @@ class IFImageManager {
         updatedisplayingImage(index: min(max(displayingIndex, 0), images.count - 1))
     }
     
-    func loadImage(
+    @MainActor func loadImage(
         at index: Int,
         options: IFImage.LoadOptions,
         sender: ImageDisplayingView,
@@ -82,7 +83,7 @@ class IFImageManager {
         
         switch image[options.kind] {
         case .image(let image):
-            sender.nuke_display(image: image)
+            sender.nuke_display(image: image, data: nil)
             completion?(.success((options.kind, image)))
 
         case .asset(let asset):
@@ -112,7 +113,7 @@ class IFImageManager {
 #if DEBUG
                     print("[ImageUI]", "Loaded \(asset.localIdentifier) at size \(image.size).")
 #endif
-                    sender.nuke_display(image: image)
+                    sender.nuke_display(image: image, data: nil)
 
                     if (userInfo?[PHImageResultIsDegradedKey] as? NSNumber)?.boolValue == true {
                         completion?(.success((kind: .thumbnail, resource: image)))
@@ -165,8 +166,10 @@ class IFImageManager {
                 placeholder: image.placeholder ?? placeholderImage,
                 transition: .fadeIn(duration: 0.1, options: .curveEaseOut))
             loadingOptions.pipeline = pipeline
-
-            Nuke.loadImage(with: request, options: loadingOptions, into: sender, completion: { result in
+            
+            
+            
+            NukeExtensions.loadImage(with: request, options: loadingOptions, into: sender, completion: { result in
                 completion?(result.map { (options.kind, $0.image) }.mapError { $0 })
             })
         }
@@ -179,7 +182,7 @@ class IFImageManager {
             return image
         default:
             guard let url = thumbnail.url else { return nil }
-            return pipeline.cachedImage(for: url)?.image
+            return pipeline.cache.cachedImage(for: ImageRequest(url: url))?.image
         }
     }
     

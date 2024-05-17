@@ -23,6 +23,7 @@
 //
 
 import MobileCoreServices
+import UniformTypeIdentifiers
 
 #if canImport(LinkPresentation)
 import LinkPresentation
@@ -49,7 +50,7 @@ class IFSharingImage: NSObject, UIActivityItemSource {
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivity.ActivityType?) -> String {
-        let uti = image.cgImage?.utType ?? kUTTypeImage
+        let uti = image.cgImage?.utType as String? ?? UTType.image.identifier
         return uti as String
     }
 
