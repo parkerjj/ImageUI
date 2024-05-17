@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "ImageUI", targets: ["ImageUI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/kean/Nuke.git", .exact("9.1.1"))
+        .package(url: "https://github.com/kean/Nuke.git", "12.6.0"..<"13.0.0")
     ],
     targets: [
         .target(name: "ImageUI", dependencies: ["Nuke"])
