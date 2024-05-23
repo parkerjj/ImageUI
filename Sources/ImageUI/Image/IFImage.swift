@@ -23,7 +23,10 @@
 //
 
 import Photos
+#if canImport(ImageUI)
 import UIKit
+#endif
+
 
 public struct IFImage {
     public enum Source {

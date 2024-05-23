@@ -22,7 +22,10 @@
 //  THE SOFTWARE.
 //
 
+#if canImport(ImageUI)
 import UIKit
+#endif
+
 
 protocol IFPageViewControllerDelegate: AnyObject {
     func pageViewController(_ pageViewController: IFPageViewController, didScrollFrom startIndex: Int, direction: UIPageViewController.NavigationDirection, progress: CGFloat)

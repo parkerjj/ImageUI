@@ -22,7 +22,10 @@
 //  THE SOFTWARE.
 //
 
+#if canImport(ImageUI)
 import UIKit
+#endif
+
 
 protocol IFImageContainerProvider: AnyObject {
     var imageContainerView: UIView { get }

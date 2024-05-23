@@ -22,7 +22,10 @@
 //  THE SOFTWARE.
 //
 
+#if canImport(ImageUI)
 import UIKit
+#endif
+
 
 extension IFBrowserViewController {
     public enum Action: Hashable {

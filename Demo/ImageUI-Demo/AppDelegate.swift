@@ -6,7 +6,13 @@
 //  Copyright © 2020 Alberto Saltarelli. All rights reserved.
 //
 
+#if !os(macOS)
 import UIKit
+#else
+import Cocoa
+import AppKit
+#endif
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

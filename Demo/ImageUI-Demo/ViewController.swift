@@ -6,7 +6,11 @@
 //  Copyright © 2020 Alberto Saltarelli. All rights reserved.
 //
 
+#if canImport(ImageUI)
 import UIKit
+#endif
+
+
 import ImageUI
 
 class ViewController: UIViewController {

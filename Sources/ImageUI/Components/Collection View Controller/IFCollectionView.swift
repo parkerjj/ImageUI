@@ -22,7 +22,10 @@
 //  THE SOFTWARE.
 //
 
+#if canImport(ImageUI)
 import UIKit
+#endif
+
 
 protocol IFCollectionViewDelegate: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, touchBegan itemIndexPath: IndexPath?)

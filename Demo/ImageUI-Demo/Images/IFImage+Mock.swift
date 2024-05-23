@@ -6,7 +6,12 @@
 //  Copyright © 2020 Alberto Saltarelli. All rights reserved.
 //
 
+#if !os(macOS)
 import UIKit
+#else
+import Cocoa
+#endif
+
 import ImageUI
 
 extension IFImage {
