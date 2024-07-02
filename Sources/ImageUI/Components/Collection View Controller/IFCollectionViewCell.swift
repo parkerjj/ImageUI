@@ -58,7 +58,16 @@ class IFCollectionViewCell: UICollectionViewCell {
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         guard let image = imageView.image else { return layoutAttributes }
+        debugPrint("Image ratio: \(imageRatio) , width: \(image.size.width) , height: \(image.size.height)")
+
+        if image.size.width == 0 || image.size.height == 0 {
+            return layoutAttributes
+        }
+        
+        var layoutAttributes = layoutAttributes
         let imageRatio = image.size.width / image.size.height
+        let width = layoutAttributes.size.height * imageRatio
+        
         layoutAttributes.size.width = layoutAttributes.size.height * imageRatio
         return layoutAttributes
     }
